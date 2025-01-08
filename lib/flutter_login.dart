@@ -16,6 +16,7 @@ import 'package:flutter_login/src/utils/constants.dart';
 import 'package:flutter_login/src/utils/dart_helper.dart';
 import 'package:flutter_login/src/widgets/cards/auth_card_builder.dart';
 import 'package:flutter_login/src/widgets/fade_in.dart';
+import 'package:flutter_login/src/widgets/gradient_box.dart';
 import 'package:flutter_login/src/widgets/hero_text.dart';
 import 'package:flutter_login/theme.dart';
 import 'package:provider/provider.dart';
@@ -835,6 +836,7 @@ class _FlutterLoginState extends State<FlutterLogin>
                     children: <Widget>[
                       Positioned(
                         child: AuthCard(
+                          initialIsoCode: widget.initialIsoCode,
                           key: authCardKey,
                           userType: widget.userType,
                           ///padding: EdgeInsets.only(top: cardTopPosition),
@@ -871,6 +873,7 @@ class _FlutterLoginState extends State<FlutterLogin>
                           alignment: Alignment.bottomCenter,
                           child: footerWidget,
                         ),
+                      ),
             GradientBox(
               colors: [
                 loginTheme.pageColorLight ?? theme.primaryColor,
@@ -912,8 +915,8 @@ class _FlutterLoginState extends State<FlutterLogin>
                             widget.confirmSignupKeyboardType,
                         introWidget: widget.headerWidget,
                         initialIsoCode: widget.initialIsoCode,
-
                       ),
+                    ),
                       ///Added The Positioned.fill around ?widget.children
                       Positioned.fill(
                         child: Align(
@@ -925,13 +928,15 @@ class _FlutterLoginState extends State<FlutterLogin>
                     ],
                   ),
                 ),
-              ],
+            ),],
             ),
+        ),
             if (!kReleaseMode && widget.showDebugButtons)
               _buildDebugAnimationButtons(),
           ],
         ),
-      ),
+      ]),
+    ),
     );
   }
 }
